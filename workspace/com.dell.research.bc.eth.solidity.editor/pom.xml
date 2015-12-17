@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.dell.research.bc</groupId>
+    <artifactId>com.dell.research.bc.eth</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../com.dell.research.bc.eth/pom.xml</relativePath>
+  </parent>
+  <artifactId>com.dell.research.bc.eth.solidity.editor</artifactId>
+  <name>Ethereum Solidity Editor</name>
+  <packaging>eclipse-plugin</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>mw2eLauncher</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includePluginDependencies>true</includePluginDependencies>
+                    <includeProjectDependencies>true</includeProjectDependencies>
+                    <mainClass>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</mainClass>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                    <arguments>
+                        <!-- Paths should be absolute. Use file:// -->
+                        <argument>file://${project.basedir}/src/com/dell/research/bc/eth/solidity/editor/GenerateSolidity.mwe2</argument>
+                        <argument>-p</argument>
+                        <!-- Leading slash for Windows platforms -->
+                        <argument>runtimeProject=/${project.basedir}</argument>
+                    </arguments>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.xtext</groupId>
+                        <artifactId>org.eclipse.xtext.xtext</artifactId>
+                        <version>${xtext-version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.xtext</groupId>
+                        <artifactId>org.eclipse.xtext.xbase</artifactId>
+                        <version>${xtext-version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.xtend</groupId>
+                <artifactId>xtend-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Clean up generated files. The Xtext generator will create files in 
+                src-gen during code generation. The ui and test projects will not clean those 
+                folders. The .gitignore files in those folders are used to "force" git to 
+                retain the src-gen folders (git does not retain empty folders). This is necessary 
+                because if the src-gen folders do not exist (e.g., in a fresh check out from 
+                git) the build will fail during the Xtext work flow processing stage. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets combine.children="append">
+                        <fileset>
+                            <directory>${project.basedir}/src-gen</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/model/generated</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}../${project.artifactid}.ui/src-gen</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}../${project.artifactid}.tests/src-gen</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <excludes>
+                                <exclude>.gitignore</exclude>
+                            </excludes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

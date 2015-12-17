@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.dell.research.bc.eth.solidity.editor.feature_1.0.0.qualifier.jar" id="com.dell.research.bc.eth.solidity.editor.feature" version="1.0.0.qualifier">
+      <category name="SolidityEditor"/>
+   </feature>
+   <category-def name="SolidityEditor" label="Solidity Editor">
+      <description>
+         Specialized editor for the Solidity Smart Contracts Language.
+      </description>
+   </category-def>
+</site>

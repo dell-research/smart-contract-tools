@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.dell.research.bc</groupId>
+    <artifactId>com.dell.research.bc.eth</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../com.dell.research.bc.eth/pom.xml</relativePath>    
+  </parent>
+  <artifactId>com.dell.research.bc.eth.solidity.editor.tests</artifactId>
+  <name>Ethereum Solidity Editor Tests</name>
+  <packaging>eclipse-test-plugin</packaging>
+    <properties>
+        <test.heap.size>1024</test.heap.size>
+        <test.stack.size>1024</test.stack.size>
+        <jvm-flags> -Xmx${test.heap.size}m  -Xss${test.stack.size}m</jvm-flags>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.xtend</groupId>
+                <artifactId>xtend-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- UI or headless -->
+                    <useUIHarness>false</useUIHarness>
+                    <argLine>${jvm-flags}</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.xtext</groupId>
+            <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
+            <version>${xtext-version}</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>macosx-jvm-flags</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <os-jvm-flags>-XstartOnFirstThread</os-jvm-flags>
+            </properties>
+        </profile>
+    </profiles>
+</project>

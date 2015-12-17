@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+      point = "org.eclipse.ui.newWizards">
+ 	<wizard
+	   id = "com.dell.research.bc.eth.solidity.ui.wizards.new.project"
+      	   name = "Solidity Project"
+	   class="com.dell.research.bc.eth.solidity.ui.wizards.NewSolidityProjectWizard"
+	   category="com.dell.research.bc.eth"
+	   project="true">
+       <description>New Solidity Project Wizard</description>
+	   <selection class="org.eclipse.core.resources.IResource"/>
+	</wizard>
+	</extension>
+   <extension
+         id="com.dell.research.bc.eth.solidity"
+         name="Solidity"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.dell.research.bc.eth.solidity.ui.wizards.SolidityProjectNature">
+         </run>
+      </runtime>
+   </extension>
+
+</plugin>

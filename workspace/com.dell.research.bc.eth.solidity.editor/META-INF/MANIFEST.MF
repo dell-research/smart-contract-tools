@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Solidity Model
+Bundle-Vendor: Dell Inc.
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.dell.research.bc.eth.solidity.editor;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.equinox.common,
+ org.eclipse.xtext.xbase.lib
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: com.dell.research.bc.eth.solidity.editor,
+ com.dell.research.bc.eth.solidity.editor.formatting,
+ com.dell.research.bc.eth.solidity.editor.generator,
+ com.dell.research.bc.eth.solidity.editor.scoping,
+ com.dell.research.bc.eth.solidity.editor.validation,
+ com.dell.research.bc.eth.solidity.editor.parser.antlr,
+ com.dell.research.bc.eth.solidity.editor.parser.antlr.internal,
+ com.dell.research.bc.eth.solidity.editor.serializer,
+ com.dell.research.bc.eth.solidity.editor.services,
+ com.dell.research.bc.eth.solidity.editor.solidity,
+ com.dell.research.bc.eth.solidity.editor.solidity.impl,
+ com.dell.research.bc.eth.solidity.editor.solidity.util,
+ com.dell.research.bc.eth.solidity.editor.services,
+ com.dell.research.bc.eth.solidity.editor.solidity,
+ com.dell.research.bc.eth.solidity.editor.solidity.impl,
+ com.dell.research.bc.eth.solidity.editor.solidity.util,
+ com.dell.research.bc.eth.solidity.editor.serializer,
+ com.dell.research.bc.eth.solidity.editor.parser.antlr,
+ com.dell.research.bc.eth.solidity.editor.parser.antlr.internal
+
